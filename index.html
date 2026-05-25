@@ -3,39 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRON Energy Outreach Pilot</title>
-  <meta name="description" content="A premium Empy-style proposal page for the TRON Energy outreach pilot." />
+  <title>TRON Energy Outreach Pilot — Slides</title>
+  <meta name="description" content="Empy-style slide deck for the TRON Energy outreach pilot." />
   <style>
     :root {
-      --bg: oklch(0.15 0.03 262);
-      --bg-soft: oklch(0.19 0.03 262);
-      --panel: oklch(0.21 0.03 258 / 0.82);
-      --panel-strong: oklch(0.24 0.04 258 / 0.92);
-      --line: oklch(0.42 0.03 260 / 0.34);
-      --text: oklch(0.95 0.01 260);
-      --muted: oklch(0.84 0.028 258);
-      --muted-2: oklch(0.72 0.03 258);
-      --indigo: oklch(0.71 0.16 274);
-      --violet: oklch(0.72 0.13 309);
-      --mint: oklch(0.86 0.1 180);
-      --danger: oklch(0.78 0.12 18);
-      --shadow: 0 24px 80px rgba(5, 10, 25, 0.38);
-      --radius: 28px;
-      --max: 1240px;
+      --bg: oklch(0.145 0.028 262);
+      --bg-2: oklch(0.17 0.03 262);
+      --panel: oklch(0.205 0.028 258 / 0.88);
+      --panel-soft: oklch(0.225 0.03 258 / 0.78);
+      --line: oklch(0.42 0.03 260 / 0.28);
+      --text: oklch(0.965 0.008 260);
+      --muted: oklch(0.84 0.024 258);
+      --muted-2: oklch(0.72 0.025 258);
+      --indigo: oklch(0.73 0.14 274);
+      --violet: oklch(0.72 0.11 308);
+      --mint: oklch(0.87 0.09 180);
+      --danger: oklch(0.76 0.10 20);
+      --shadow: 0 28px 90px rgba(4, 8, 22, 0.42);
+      --radius: 30px;
+      --shell: min(1280px, calc(100vw - 56px));
+      --slide-gap: clamp(16px, 2vh, 28px);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; scrollbar-width: none; }
+    *::-webkit-scrollbar { width: 0 !important; height: 0 !important; display: none !important; }
+    html, body { margin: 0; height: 100%; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
       font-family: "SF Pro Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(circle at 15% 10%, color-mix(in oklch, var(--violet) 18%, transparent), transparent 26%),
-        radial-gradient(circle at 82% 18%, color-mix(in oklch, var(--indigo) 24%, transparent), transparent 30%),
-        linear-gradient(180deg, oklch(0.17 0.03 260), oklch(0.13 0.025 260) 44%, oklch(0.12 0.02 260));
       color: var(--text);
-      overflow-x: hidden;
-      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 10%, color-mix(in oklch, var(--violet) 18%, transparent), transparent 26%),
+        radial-gradient(circle at 84% 18%, color-mix(in oklch, var(--indigo) 18%, transparent), transparent 30%),
+        linear-gradient(180deg, oklch(0.165 0.028 262), oklch(0.135 0.026 262));
+      overflow: hidden;
+      overflow: clip;
     }
 
     body::before {
@@ -44,153 +46,348 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 96px 96px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.3), transparent 82%);
-      opacity: 0.28;
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+      background-size: 100px 100px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.28), transparent 78%);
+      opacity: 0.25;
     }
 
-    a { color: inherit; text-decoration: none; }
-    main { position: relative; z-index: 1; }
+    button, a { font: inherit; color: inherit; }
+    a { text-decoration: none; }
 
-    .shell {
-      width: min(calc(100% - 48px), var(--max));
+    .deck {
+      height: 100dvh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chrome {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .chrome-inner {
+      width: var(--shell);
       margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(22px);
-      background: color-mix(in oklch, var(--bg) 82%, transparent);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .topbar-inner {
-      width: min(calc(100% - 48px), var(--max));
-      margin: 0 auto;
+      padding-top: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
-      gap: 24px;
+      gap: 18px;
     }
 
     .brand {
-      display: flex;
+      pointer-events: auto;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 12px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: rgba(14, 17, 31, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
       color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: var(--shadow);
     }
 
     .brand-mark {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--mint), var(--indigo));
-      box-shadow: 0 0 0 6px rgba(125, 140, 255, 0.10);
+      box-shadow: 0 0 0 6px rgba(122, 146, 255, 0.12);
+      flex: none;
     }
 
-    .topnav {
+    .chrome-right {
+      pointer-events: auto;
       display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-size: 14px;
-      color: var(--muted-2);
+      align-items: center;
+      gap: 12px;
     }
 
-    .topnav a {
-      padding: 10px 0;
-      position: relative;
+    .counter,
+    .mode-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(14, 17, 31, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      color: var(--muted);
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      letter-spacing: 0.04em;
     }
 
-    .topnav a::after {
-      content: "";
+    .progress-rail {
+      position: fixed;
+      top: 76px;
+      right: max(20px, calc((100vw - var(--shell)) / 2));
+      z-index: 25;
+      width: 3px;
+      height: min(54vh, 460px);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 12%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--mint), var(--indigo));
+      transition: height 220ms ease;
+    }
+
+    .controls {
+      position: fixed;
+      left: max(20px, calc((100vw - var(--shell)) / 2));
+      bottom: 18px;
+      z-index: 25;
+      display: flex;
+      gap: 10px;
+    }
+
+    .control,
+    .ghost-link {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(14, 17, 31, 0.72);
+      color: var(--text);
+      min-width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 140ms ease, background 140ms ease;
+    }
+
+    .ghost-link {
+      min-width: auto;
+      padding: 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.03em;
+    }
+
+    .control:hover,
+    .ghost-link:hover { transform: translateY(-1px); background: rgba(255,255,255,0.08); }
+
+    .slide {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 4px;
-      height: 1px;
-      transform: scaleX(0);
-      transform-origin: left;
-      background: linear-gradient(90deg, var(--mint), var(--indigo));
-      transition: transform 180ms ease;
+      inset: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 62px 0 12px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.988);
+      transition: opacity 220ms ease, transform 220ms ease;
     }
 
-    .topnav a:hover::after,
-    .topnav a:focus-visible::after { transform: scaleX(1); }
-
-    .hero {
-      padding: 72px 0 36px;
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      z-index: 2;
     }
 
-    .hero-grid {
+    .stage {
+      width: var(--shell);
+      height: calc(100dvh - 128px);
+      max-height: calc(100dvh - 128px);
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
-      align-items: end;
+      grid-template-columns: 208px minmax(0, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .chapter {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px 0 6px;
+    }
+
+    .chapter-top {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chapter-index {
+      color: var(--muted-2);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .chapter-title {
+      font-size: clamp(26px, 2.6vw, 40px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      margin: 0;
+      max-width: 10ch;
+    }
+
+    .chapter-copy {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      max-width: 18ch;
+    }
+
+    .chapter-bottom {
+      color: var(--muted-2);
+      font-size: 11px;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+    }
+
+    .canvas {
+      height: 100%;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02)),
+        radial-gradient(circle at top right, rgba(130, 120, 255, 0.12), transparent 28%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: clamp(22px, 2.6vh, 30px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--slide-gap);
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      align-self: flex-start;
       padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
       color: var(--muted);
       font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 22px;
     }
 
-    h1 {
+    h1, h2 {
       margin: 0;
-      font-size: clamp(52px, 7.5vw, 110px);
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-      max-width: 9ch;
+      letter-spacing: -0.055em;
+      line-height: 0.93;
     }
 
-    .hero-copy {
-      margin-top: 24px;
-      max-width: 42rem;
-      font-size: clamp(20px, 2.2vw, 28px);
-      line-height: 1.38;
+    h1 { font-size: clamp(52px, 6.4vw, 92px); max-width: 10ch; }
+    h2 { font-size: clamp(38px, 4.6vw, 64px); max-width: 12ch; }
+
+    .lede {
+      margin: 0;
       color: var(--muted);
+      font-size: clamp(18px, 1.9vw, 24px);
+      line-height: 1.34;
+      max-width: 34ch;
     }
 
-    .hero-note {
-      margin-top: 28px;
-      max-width: 42rem;
+    .summary-note {
       padding: 18px 20px;
-      border-left: 2px solid color-mix(in oklch, var(--mint) 65%, white);
+      border-left: 2px solid color-mix(in oklch, var(--mint) 68%, white);
       background: rgba(255,255,255,0.03);
-      color: var(--text);
       border-radius: 0 18px 18px 0;
-      box-shadow: var(--shadow);
+      color: var(--text);
+      max-width: 42rem;
+      font-size: 16px;
+      line-height: 1.38;
     }
 
-    .hero-note strong { color: var(--mint); }
+    .hero-grid,
+    .split,
+    .impact-grid,
+    .deliver-grid,
+    .asset-grid,
+    .format-grid,
+    .proof-grid,
+    .decision-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-grid { grid-template-columns: 1.15fr .85fr; align-items: stretch; }
+    .split { grid-template-columns: 1fr 1fr; }
+    .impact-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .proof-grid { grid-template-columns: 1.2fr .8fr; }
+    .format-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .deliver-grid,
+    .asset-grid,
+    .decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card,
+    .metric,
+    .format,
+    .signal,
+    .decision,
+    .diagram-panel {
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      padding: 18px 20px;
+    }
+
+    .card strong,
+    .decision strong,
+    .signal strong,
+    .format strong,
+    .diagram-panel strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p,
+    .decision p,
+    .signal p,
+    .format p,
+    .diagram-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.48;
+    }
 
     .orbital {
+      height: 100%;
       position: relative;
-      min-height: 420px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 36px;
-      background:
-        radial-gradient(circle at center, rgba(167,198,255,0.12), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
       overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at center, rgba(167,198,255,0.12), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      min-height: 280px;
     }
 
     .orbital::before,
@@ -199,184 +396,124 @@
       position: absolute;
       inset: 50%;
       translate: -50% -50%;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 50%;
     }
-    .orbital::before { width: 62%; height: 62%; }
-    .orbital::after { width: 84%; height: 84%; opacity: 0.6; }
+
+    .orbital::before { width: 56%; height: 56%; }
+    .orbital::after { width: 78%; height: 78%; opacity: 0.55; }
 
     .orbit-core {
       position: absolute;
       inset: 50%;
       translate: -50% -50%;
-      width: 132px;
+      width: 136px;
       aspect-ratio: 1;
-      border-radius: 28px;
+      border-radius: 30px;
       display: grid;
       place-items: center;
+      text-align: center;
+      padding: 18px;
       background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: 0 18px 60px rgba(0,0,0,0.32);
-      text-align: center;
-      padding: 18px;
     }
 
-    .orbit-core b {
-      display: block;
-      font-size: 18px;
-      letter-spacing: -0.03em;
-    }
+    .orbit-core b { display:block; font-size: 18px; }
 
     .orbit-node {
       position: absolute;
-      width: 144px;
-      padding: 14px 16px;
+      width: 150px;
+      padding: 14px 15px;
       border-radius: 18px;
-      background: rgba(14, 18, 33, 0.78);
+      background: rgba(14,18,33,.8);
       border: 1px solid rgba(255,255,255,0.08);
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.35;
+      line-height: 1.36;
       box-shadow: var(--shadow);
     }
 
-    .orbit-node b { display: block; color: var(--text); margin-bottom: 6px; font-size: 15px; }
-    .n1 { top: 12%; left: 10%; }
+    .orbit-node b { display:block; font-size: 14px; color: var(--text); margin-bottom: 6px; }
+    .n1 { top: 12%; left: 8%; }
     .n2 { top: 14%; right: 8%; }
-    .n3 { bottom: 14%; left: 12%; }
-    .n4 { bottom: 10%; right: 10%; }
+    .n3 { bottom: 14%; left: 10%; }
+    .n4 { bottom: 11%; right: 9%; }
 
-    .section {
-      padding: 34px 0;
+    .statement {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      min-height: 100%;
     }
 
-    .section-grid {
-      display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .section-label {
-      position: sticky;
-      top: 96px;
-      padding-top: 8px;
-    }
-
-    .label-kicker {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .quote-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       color: var(--muted-2);
-      margin-bottom: 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    .label-title {
-      font-size: 32px;
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      margin: 0 0 12px;
+    .bar {
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--mint), var(--indigo));
     }
 
-    .label-copy {
+    .compact-list {
+      margin: 0;
+      padding-left: 18px;
       color: var(--muted);
-      line-height: 1.62;
       font-size: 16px;
+      line-height: 1.5;
+      display: grid;
+      gap: 8px;
     }
-
-    .stage {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .stage h2 {
-      margin: 0 0 18px;
-      font-size: clamp(32px, 4vw, 54px);
-      line-height: 0.98;
-      letter-spacing: -0.045em;
-      max-width: 14ch;
-    }
-
-    .lede {
-      margin: 0 0 26px;
-      max-width: 44rem;
-      color: var(--muted);
-      font-size: 21px;
-      line-height: 1.56;
-    }
-
-    .list-grid,
-    .metric-grid,
-    .format-grid,
-    .asset-grid,
-    .step-grid { display: grid; gap: 16px; }
-
-    .list-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .metric-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .format-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .asset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .step-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-
-    .item,
-    .metric,
-    .format,
-    .asset,
-    .step {
-      padding: 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .item strong,
-    .asset strong,
-    .step strong,
-    .format strong { display: block; font-size: 16px; margin-bottom: 8px; }
-    .item p,
-    .asset p,
-    .step p,
-    .format p { margin: 0; color: var(--muted); line-height: 1.58; font-size: 15px; }
 
     .metric {
-      min-height: 150px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-height: 148px;
     }
 
-    .metric .value {
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 0.9;
-      letter-spacing: -0.05em;
+    .metric-value {
+      font-size: clamp(36px, 4.5vw, 60px);
+      line-height: .9;
+      letter-spacing: -0.06em;
       color: var(--mint);
       font-weight: 700;
     }
 
-    .metric .caption { color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .metric-copy {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+      max-width: 18ch;
+    }
+
+    .format {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 100%;
+    }
 
     .format.featured {
-      background:
-        linear-gradient(180deg, color-mix(in oklch, var(--indigo) 20%, rgba(255,255,255,0.03)), rgba(255,255,255,0.04));
+      background: linear-gradient(180deg, color-mix(in oklch, var(--indigo) 18%, rgba(255,255,255,0.03)), rgba(255,255,255,0.04));
       border-color: color-mix(in oklch, var(--indigo) 35%, rgba(255,255,255,0.08));
-      transform: translateY(-8px);
+      transform: translateY(-6px);
     }
 
-    .format .tier {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted-2);
-      margin-bottom: 10px;
-    }
-
-    .format .badge {
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 14px;
+      align-self: flex-start;
       padding: 7px 11px;
       border-radius: 999px;
       background: rgba(255,255,255,0.08);
@@ -384,147 +521,86 @@
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-bottom: 6px;
     }
 
-    .format .price {
-      font-size: 42px;
-      line-height: 0.95;
-      margin: 0 0 12px;
+    .tier {
+      color: var(--muted-2);
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 11px;
+    }
+
+    .price {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: .92;
       letter-spacing: -0.05em;
+      margin: 0;
     }
 
     .format ul {
-      margin: 16px 0 0;
+      margin: 0;
       padding-left: 18px;
       color: var(--muted);
-    }
-
-    .format li { margin: 7px 0; line-height: 1.45; }
-
-    .rail {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-    }
-
-    .rail-block {
-      padding: 22px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .rail-block h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .rail-block p,
-    .rail-block li {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.58;
-      font-size: 15px;
-    }
-
-    .rail-block ul { margin: 14px 0 0; padding-left: 18px; }
-
-    .risk-callout {
-      margin-top: 24px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 18px 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: color-mix(in oklch, var(--danger) 9%, rgba(255,255,255,0.03));
-    }
-
-    .risk-callout .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--danger);
-      margin-top: 8px;
-      flex: none;
-    }
-
-    .closing {
-      padding: 24px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .closing strong { display: block; font-size: 18px; margin-bottom: 8px; }
-    .closing p { margin: 0; color: var(--muted); line-height: 1.55; }
-
-    .decision-bar {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .decision-pill {
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .decision-pill strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted-2);
-    }
-
-    .decision-pill span {
-      color: var(--text);
+      font-size: 14px;
       line-height: 1.45;
-      font-size: 15px;
+      display: grid;
+      gap: 7px;
     }
 
-    .cta-row {
-      margin-top: 22px;
+    .signal {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 108px;
     }
 
-    .cta {
+    .decision {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .closing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 4px;
+    }
+
+    .cta-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
+      min-height: 44px;
+      padding: 0 16px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.08);
-      font-size: 14px;
-      letter-spacing: 0.01em;
-    }
-
-    .cta.primary {
       background: linear-gradient(135deg, color-mix(in oklch, var(--indigo) 84%, white), color-mix(in oklch, var(--mint) 35%, var(--indigo)));
-      color: oklch(0.18 0.03 260);
-      border-color: transparent;
+      color: oklch(0.19 0.03 260);
       font-weight: 700;
+      box-shadow: var(--shadow);
+      white-space: nowrap;
     }
 
-    .cta.secondary {
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-    }
-
-    .footer {
-      padding: 28px 0 52px;
+    .subdued {
       color: var(--muted-2);
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .cover .chapter-copy { font-size: 13px; line-height: 1.38; }
+    .cover .chapter-bottom { display: none; }
+    .cover h1 { font-size: clamp(46px, 5.8vw, 82px); max-width: 9ch; }
+    .cover .lede { font-size: clamp(16px, 1.7vw, 21px); line-height: 1.28; max-width: 31ch; }
+    .cover .summary-note { padding: 14px 16px; font-size: 15px; line-height: 1.32; }
+    .cover .orbital { min-height: 240px; }
+    .cover .orbit-node { width: 138px; font-size: 12px; }
+    .cover .hero-grid { gap: 18px; }
+
+    .two-line {
+      max-width: 24ch;
     }
 
     :focus-visible {
@@ -533,120 +609,152 @@
       border-radius: 8px;
     }
 
-    @media (max-width: 1120px) {
+    @media (max-width: 1220px) {
+      .stage { grid-template-columns: 190px minmax(0, 1fr); }
+      h1 { font-size: clamp(52px, 6.6vw, 88px); }
+      h2 { font-size: clamp(38px, 4.6vw, 60px); }
       .hero-grid,
-      .section-grid,
-      .rail { grid-template-columns: 1fr; }
-      .section-label { position: static; }
-      .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .format-grid,
+      .proof-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .format-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 980px) {
+      body { overflow: auto; }
+      .deck { height: auto; overflow: visible; }
+      .slide { position: relative; inset: auto; height: auto; min-height: auto; opacity: 1; pointer-events: auto; transform: none; padding: 90px 0 24px; }
+      .stage {
+        height: auto;
+        max-height: none;
+        grid-template-columns: 1fr;
+      }
+      .chapter {
+        padding: 0;
+        gap: 10px;
+      }
+      .chapter-copy { max-width: none; }
+      .progress-rail,
+      .controls { display: none; }
+      .deliver-grid,
       .asset-grid,
-      .list-grid,
-      .step-grid,
-      .decision-bar { grid-template-columns: 1fr; }
-      .orbital { min-height: 360px; }
-      h1 { max-width: 11ch; }
+      .decision-grid,
+      .split,
+      .impact-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 760px) {
-      .topbar-inner,
-      .shell { width: min(calc(100% - 28px), var(--max)); }
-      .topnav { display: none; }
-      .hero { padding-top: 42px; }
-      h1 { font-size: clamp(42px, 14vw, 64px); }
-      .hero-copy { font-size: 19px; }
-      .metric-grid { grid-template-columns: 1fr; }
-      .orbital { min-height: 320px; }
-      .orbit-node { width: 132px; font-size: 12px; }
-      .n1 { left: 4%; }
-      .n2 { right: 4%; }
-      .n3 { left: 6%; }
-      .n4 { right: 6%; }
-      .stage { padding: 22px; }
+      .chrome-inner { width: min(calc(100vw - 24px), var(--shell)); }
+      .brand { font-size: 11px; }
+      .mode-pill { display: none; }
+      .slide { padding-top: 76px; }
+      .canvas { padding: 22px; border-radius: 28px; }
+      .lede { font-size: 18px; }
+      .summary-note { font-size: 16px; }
+      .orbit-node { width: 130px; font-size: 12px; }
+      .orbital { min-height: 280px; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
+  <div class="chrome" aria-hidden="false">
+    <div class="chrome-inner">
       <div class="brand"><span class="brand-mark"></span> Empy · TRON Energy Pilot</div>
-      <nav class="topnav" aria-label="Section navigation">
-        <a href="#goal">Goal</a>
-        <a href="#problem">Problem</a>
-        <a href="#offer">Offer</a>
-        <a href="#market">Market</a>
-        <a href="#formats">Formats</a>
-        <a href="#week-one">Week One</a>
-        <a href="#assets">Assets</a>
-        <a href="#next">Next Step</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero shell" id="top">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">Outbound partnership pilot · controlled launch</div>
-          <h1>TRON Energy Outreach Pilot</h1>
-          <p class="hero-copy">A premium, management-safe way to test a new partnership acquisition channel without hiring an internal outbound team or building the stack from scratch.</p>
-          <div class="hero-note"><strong>Frame</strong> — this is not a database purchase. It is a controlled pilot of a repeatable outbound motion.</div>
-        </div>
-        <div class="orbital" aria-hidden="true">
-          <div class="orbit-core"><b>Outbound</b>pilot</div>
-          <div class="orbit-node n1"><b>Targeting</b>Relevant market selection for the TRON Energy use case.</div>
-          <div class="orbit-node n2"><b>Messaging</b>Structured first touch and follow-up sequence.</div>
-          <div class="orbit-node n3"><b>Infrastructure</b>Sending setup, routing, and process discipline.</div>
-          <div class="orbit-node n4"><b>Signals</b>Delivery, replies, and warm hand-off into the business.</div>
-        </div>
+      <div class="chrome-right">
+        <div class="mode-pill">Slides</div>
+        <div class="counter"><span id="currentSlide">1</span>&nbsp;/&nbsp;<span id="totalSlides">9</span></div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="section shell" id="goal">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">01 · business goal</div>
-          <h2 class="label-title">What this channel is meant to create</h2>
-          <div class="label-copy">The proposal should feel like operating leverage, not another data buy.</div>
+  <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="controls">
+    <button class="control" id="prevBtn" aria-label="Previous slide">←</button>
+    <button class="control" id="nextBtn" aria-label="Next slide">→</button>
+    <a class="ghost-link" href="#slide-1">Top</a>
+  </div>
+
+  <main class="deck" id="deck">
+    <section class="slide cover" id="slide-1" data-title="Cover">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">01 · cover</div>
+            <h3 class="chapter-title">Fast launch. Clear decision.</h3>
+            <div class="chapter-copy">A compact deck Roman can forward upward without turning it into homework.</div>
+          </div>
+          <div class="chapter-bottom">Arrow keys advance the deck. Tuned for a 14-inch MacBook screen.</div>
         </aside>
-        <div class="stage">
-          <h2>TRON Energy does not need more contacts. It needs a repeatable way to create partnership conversations.</h2>
-          <p class="lede">The objective is recurring partner acquisition across selected crypto infrastructure segments, not a one-off export of names.</p>
-          <div class="list-grid">
-            <div class="item"><strong>Excess energy suppliers</strong><p>Find counterparties that can provide energy below market pricing.</p></div>
-            <div class="item"><strong>TRC-20 volume owners</strong><p>Find companies with sustained transaction flow that can benefit from lower-cost energy supply.</p></div>
-            <div class="item"><strong>Direct decision-maker access</strong><p>Reach business owners, founders, and operators without generic inbox detours.</p></div>
-            <div class="item"><strong>Repeatable motion</strong><p>Turn discovery into a channel that can be reused across segments and hypotheses.</p></div>
+        <div class="canvas">
+          <div class="hero-grid">
+            <div class="statement">
+              <div class="eyebrow">Outbound partnership pilot · controlled launch</div>
+              <h1>TRON Energy Outreach Pilot</h1>
+              <p class="lede">A management-safe way to test a new partnership channel without hiring an internal outbound team or building the stack from scratch.</p>
+              <div class="summary-note"><strong>Frame</strong> — not a database purchase, but a controlled pilot of a repeatable outbound motion.</div>
+            </div>
+            <div class="orbital" aria-hidden="true">
+              <div class="orbit-core"><b>Outbound</b>pilot</div>
+              <div class="orbit-node n1"><b>Targeting</b>Relevant market selection for the TRON Energy use case.</div>
+              <div class="orbit-node n2"><b>Messaging</b>Structured first touch and follow-up sequence.</div>
+              <div class="orbit-node n3"><b>Infrastructure</b>Sending setup, routing, and process discipline.</div>
+              <div class="orbit-node n4"><b>Signals</b>Delivery, replies, and warm hand-off into the business.</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="problem">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">02 · constraint</div>
-          <h2 class="label-title">Why a database alone does not solve the problem</h2>
-          <div class="label-copy">This is the trust section: explain why raw contact access is not the same as a working outbound engine.</div>
+    <section class="slide" id="slide-2" data-title="Thesis">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">02 · thesis</div>
+            <h3 class="chapter-title">What this should create</h3>
+            <div class="chapter-copy">Keep the business goal simple enough to repeat in one breath.</div>
+          </div>
+          <div class="chapter-bottom">This slide should feel like the deck’s core thesis.</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
+          <div class="quote-line"><span class="bar"></span>Business objective</div>
+          <h2>TRON Energy does not need more contacts. It needs a repeatable way to create partnership conversations.</h2>
+          <p class="lede two-line">The goal is recurring partner acquisition across selected crypto infrastructure segments, not a one-off export of names.</p>
+          <div class="split">
+            <div class="card"><strong>Excess energy suppliers</strong><p>Identify counterparties that can provide Energy below market pricing.</p></div>
+            <div class="card"><strong>TRC-20 volume owners</strong><p>Find companies with sustained transaction flow that can benefit from lower-cost Energy supply.</p></div>
+            <div class="card"><strong>Direct decision-maker access</strong><p>Reach founders, operators, and business owners without generic inbox detours.</p></div>
+            <div class="card"><strong>Repeatable motion</strong><p>Turn discovery into a channel that can be reused across segments and new hypotheses.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-3" data-title="Problem">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">03 · problem</div>
+            <h3 class="chapter-title">Why a database is not a channel</h3>
+            <div class="chapter-copy">This is the trust slide: name the operational gap without sounding dramatic.</div>
+          </div>
+          <div class="chapter-bottom">A single explanation Roman can use when “just buy contacts” comes up.</div>
+        </aside>
+        <div class="canvas">
           <h2>Contacts alone do not turn into pipeline.</h2>
           <p class="lede">A working outbound motion depends on several coordinated layers. Missing one of them usually turns the project into a slow internal experiment.</p>
-          <div class="rail">
-            <div class="rail-block">
-              <h3>What a working motion requires</h3>
-              <ul>
+          <div class="split">
+            <div class="diagram-panel">
+              <strong>What a working motion requires</strong>
+              <ul class="compact-list">
                 <li>Relevant ICP targeting</li>
                 <li>Personal decision-maker emails</li>
                 <li>Segmentation by angle and market role</li>
                 <li>Message sequence design</li>
-                <li>Sending infrastructure</li>
-                <li>Tracking and response handling</li>
               </ul>
             </div>
-            <div class="rail-block">
-              <h3>What usually breaks</h3>
-              <ul>
+            <div class="diagram-panel">
+              <strong>What usually breaks</strong>
+              <ul class="compact-list">
                 <li>Good data with no execution layer</li>
                 <li>Execution with poor targeting</li>
                 <li>In-house setup drag</li>
@@ -654,92 +762,114 @@
               </ul>
             </div>
           </div>
-          <div class="risk-callout"><span class="dot"></span><div><strong>Key point:</strong> the expensive part is not access to contacts. It is launching a controlled outbound process that management can trust.</div></div>
+          <div class="summary-note"><strong>Key point</strong> — the expensive part is not access to contacts. It is launching a controlled outbound process that management can trust.</div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="offer">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">03 · offer</div>
-          <h2 class="label-title">What Empy is actually providing</h2>
-          <div class="label-copy">The page should feel like a product operating surface: clear handoffs, clear ownership, minimal hype.</div>
+    <section class="slide" id="slide-4" data-title="Offer">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">04 · offer</div>
+            <h3 class="chapter-title">What Empy actually provides</h3>
+            <div class="chapter-copy">This should feel like a product operating surface, not a feature dump.</div>
+          </div>
+          <div class="chapter-bottom">One screen. One answer to “what are we actually buying?”</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
           <h2>A turnkey outbound pilot.</h2>
           <p class="lede">We take ownership of the layers that make the channel feel operational rather than theoretical.</p>
-          <div class="asset-grid">
-            <div class="asset"><strong>Lead selection + packaging</strong><p>Build the usable starting market for the TRON Energy use case.</p></div>
-            <div class="asset"><strong>Segmentation</strong><p>Break the market into addressable sub-groups with distinct angles.</p></div>
-            <div class="asset"><strong>Messaging preparation</strong><p>Create first-touch and follow-up logic that is specific enough to be credible.</p></div>
-            <div class="asset"><strong>Launch execution</strong><p>Own the motion instead of handing over a static file and leaving the team to improvise.</p></div>
-            <div class="asset"><strong>Infrastructure + tracking</strong><p>Prepare the route from send to signal, not just from data to sheet.</p></div>
-            <div class="asset"><strong>Warm lead hand-off</strong><p>Move live interest back into the business with context instead of noise.</p></div>
+          <div class="deliver-grid">
+            <div class="signal"><strong>Lead selection + packaging</strong><p>Build the usable starting market for the TRON Energy use case.</p></div>
+            <div class="signal"><strong>Segmentation</strong><p>Break the market into addressable sub-groups with distinct angles.</p></div>
+            <div class="signal"><strong>Messaging preparation</strong><p>Create first-touch and follow-up logic that is specific enough to be credible.</p></div>
+            <div class="signal"><strong>Launch execution</strong><p>Own the motion instead of handing over a static file and leaving the team to improvise.</p></div>
+            <div class="signal"><strong>Infrastructure + tracking</strong><p>Prepare the route from send to signal, not just from data to sheet.</p></div>
+            <div class="signal"><strong>Warm lead hand-off</strong><p>Move live interest back into the business with context instead of noise.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="market">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">04 · prepared market</div>
-          <h2 class="label-title">This use case does not start from zero</h2>
-          <div class="label-copy">This is the proof block. It should feel factual and restrained.</div>
+    <section class="slide" id="slide-5" data-title="Market">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">05 · proof</div>
+            <h3 class="chapter-title">Why this is viable now</h3>
+            <div class="chapter-copy">Proof should be visual, factual, and easy to scan.</div>
+          </div>
+          <div class="chapter-bottom">This is the most “show, don’t tell” slide in the deck.</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
+          <div class="quote-line"><span class="bar"></span>Prepared target market</div>
           <h2>A starting market for TRON Energy is already prepared.</h2>
-          <div class="metric-grid">
-            <div class="metric"><div class="value">15,656</div><div class="caption">relevant leads mapped to the current use case</div></div>
-            <div class="metric"><div class="value">8,119</div><div class="caption">leads with email available for campaign use</div></div>
-            <div class="metric"><div class="value">2,406</div><div class="caption">decision-makers with email already isolated</div></div>
-            <div class="metric"><div class="value">4</div><div class="caption">core segments: exchanges, OTC, iGaming PSP, crypto fintech</div></div>
+          <div class="impact-grid">
+            <div class="metric"><div class="metric-value">15,656</div><div class="metric-copy">relevant leads mapped to the current use case</div></div>
+            <div class="metric"><div class="metric-value">8,119</div><div class="metric-copy">leads with email available for campaign use</div></div>
+            <div class="metric"><div class="metric-value">2,406</div><div class="metric-copy">decision-makers with email already isolated</div></div>
+            <div class="metric"><div class="metric-value">4</div><div class="metric-copy">core segments: exchanges, OTC, iGaming PSP, crypto fintech</div></div>
           </div>
-          <div class="closing" style="margin-top:22px;"><strong>Implication</strong><p>The team is not paying to discover whether a market exists. The initial target surface is already assembled and can be shaped into a pilot motion quickly.</p></div>
+          <div class="summary-note"><strong>Implication</strong> — the team is not paying to discover whether a market exists. The initial target surface is already assembled and can be shaped into a pilot motion quickly.</div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="formats">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">05 · formats</div>
-          <h2 class="label-title">Three launch formats, depending on how much execution should sit with us</h2>
-          <div class="label-copy">The visual hierarchy should naturally make the managed option feel like the practical center of gravity.</div>
+    <section class="slide" id="slide-6" data-title="Formats">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">06 · formats</div>
+            <h3 class="chapter-title">Three launch formats</h3>
+            <div class="chapter-copy">Keep the comparison high-signal. Scope matters more than feature count.</div>
+          </div>
+          <div class="chapter-bottom">Managed should feel like the practical center of gravity.</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
           <h2>The difference is not feature count. It is how much execution we take off your plate.</h2>
           <div class="format-grid">
             <article class="format">
-              <div class="tier">Self-Serve</div>
-              <div class="price">$5,000</div>
-              <strong>For teams that already have hands and infrastructure</strong>
-              <p>Access to the target database with advisory support. Internal team runs the campaign.</p>
+              <div>
+                <div class="tier">Self-Serve</div>
+                <div class="price">$5,000</div>
+              </div>
+              <div>
+                <strong>Best for teams that already have hands and infrastructure.</strong>
+                <p>Database access plus advisory support. Internal team runs the campaign.</p>
+              </div>
               <ul>
-                <li>Best if there is already outbound capacity in-house</li>
-                <li>Lower entry price, higher internal lift</li>
+                <li>Lowest entry price</li>
+                <li>Highest internal lift</li>
               </ul>
             </article>
             <article class="format featured">
-              <div class="badge">Recommended for first launch</div>
-              <div class="tier">Managed Outreach</div>
-              <div class="price">$7,500</div>
-              <strong>For teams that want a turnkey launch</strong>
-              <p>The practical operating option when the goal is speed without building an outbound function from scratch.</p>
+              <div>
+                <div class="badge">Recommended for first launch</div>
+                <div class="tier">Managed Outreach</div>
+                <div class="price">$7,500</div>
+              </div>
+              <div>
+                <strong>Best for teams that want a turnkey launch.</strong>
+                <p>The practical operating option when speed matters and no outbound function exists yet.</p>
+              </div>
               <ul>
                 <li>Balanced price / control / execution</li>
                 <li>Management-safe default recommendation</li>
               </ul>
             </article>
             <article class="format">
-              <div class="tier">Managed + Enrichment</div>
-              <div class="price">$11,500</div>
-              <strong>For a stronger first touch in a competitive audience</strong>
-              <p>Add deeper context and personalization for a more defensible high-attention launch.</p>
+              <div>
+                <div class="tier">Managed + Enrichment</div>
+                <div class="price">$11,500</div>
+              </div>
+              <div>
+                <strong>Best for a stronger first touch in a competitive audience.</strong>
+                <p>Deeper context and personalization for a more defensible, higher-attention launch.</p>
+              </div>
               <ul>
-                <li>Higher precision, lower template feel</li>
-                <li>Best when quality of touch matters most</li>
+                <li>Higher precision</li>
+                <li>Lower template feel</li>
               </ul>
             </article>
           </div>
@@ -747,79 +877,146 @@
       </div>
     </section>
 
-    <section class="section shell" id="week-one">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">06 · week one</div>
-          <h2 class="label-title">What will actually exist after the first 7 days</h2>
-          <div class="label-copy">This section reduces anxiety. It should feel tangible and easy to defend upward.</div>
-        </aside>
-        <div class="stage">
-          <h2>The first week produces campaign assets, not vague progress.</h2>
-          <div class="step-grid">
-            <div class="step"><strong>01 · ICP</strong><p>Finalize the operating ICP for the current pilot.</p></div>
-            <div class="step"><strong>02 · Segmentation</strong><p>Approve market slices and targeting angles.</p></div>
-            <div class="step"><strong>03 · Lead list</strong><p>Prepare the launch-ready target list.</p></div>
-            <div class="step"><strong>04 · Sequence</strong><p>Build the first-touch and follow-up structure.</p></div>
-            <div class="step"><strong>05 · Launch plan</strong><p>Prepare the operating route into send and signal collection.</p></div>
+    <section class="slide" id="slide-7" data-title="Week One">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">07 · week one</div>
+            <h3 class="chapter-title">What exists after the first 7 days</h3>
+            <div class="chapter-copy">This reduces anxiety. It should feel tangible and easy to defend upward.</div>
           </div>
-          <div class="closing" style="margin-top:22px;"><strong>Managed formats include</strong><p>sending setup prepared for launch, so the team is looking at a real outbound contour by the end of week one rather than a strategy memo.</p></div>
+          <div class="chapter-bottom">Week one must feel like visible momentum, not vague progress.</div>
+        </aside>
+        <div class="canvas">
+          <h2>The first week produces campaign assets, not vague progress.</h2>
+          <div class="deliver-grid">
+            <div class="signal"><strong>ICP finalized</strong><p>The operating ICP is locked for the current pilot.</p></div>
+            <div class="signal"><strong>Segmentation approved</strong><p>Priority market slices and targeting angles are confirmed.</p></div>
+            <div class="signal"><strong>Lead list prepared</strong><p>A launch-ready target list exists instead of a raw export.</p></div>
+            <div class="signal"><strong>Sequence drafted</strong><p>First-touch and follow-up structure is built and reviewable.</p></div>
+          </div>
+          <div class="summary-note"><strong>Managed formats include</strong> — sending setup prepared for launch, so the team is looking at a real outbound contour by the end of week one rather than a strategy memo.</div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="assets">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">07 · retained value</div>
-          <h2 class="label-title">What remains after the pilot</h2>
-          <div class="label-copy">This is where the page prevents the “we paid for air” objection.</div>
+    <section class="slide" id="slide-8" data-title="Assets">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">08 · retained value</div>
+            <h3 class="chapter-title">What remains after the pilot</h3>
+            <div class="chapter-copy">This is the slide that answers the “we paid for air” objection.</div>
+          </div>
+          <div class="chapter-bottom">The buyer should feel they keep an asset, not just consume effort.</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
           <h2>Even the first iteration leaves a reusable outbound asset.</h2>
           <div class="asset-grid">
-            <div class="asset"><strong>Target database + segmentation</strong><p>A shaped working market, not a raw export.</p></div>
-            <div class="asset"><strong>ICP logic</strong><p>The reasoning behind who is being targeted and why.</p></div>
-            <div class="asset"><strong>Outbound sequence structure</strong><p>A first reusable playbook instead of a blank page.</p></div>
-            <div class="asset"><strong>Message templates + hypotheses</strong><p>The copy base and what was learned from the first operating pass.</p></div>
-            <div class="asset"><strong>Delivery / reply / early-signal data</strong><p>The first layer of real market feedback.</p></div>
-            <div class="asset"><strong>Base for iteration</strong><p>A path into another segment or a second pass, rather than a reset.</p></div>
+            <div class="card"><strong>Target database + segmentation</strong><p>A shaped working market, not a raw export.</p></div>
+            <div class="card"><strong>ICP logic</strong><p>The reasoning behind who is being targeted and why.</p></div>
+            <div class="card"><strong>Outbound sequence structure</strong><p>A first reusable playbook instead of a blank page.</p></div>
+            <div class="card"><strong>Templates + hypotheses</strong><p>The copy base and what was learned from the first operating pass.</p></div>
           </div>
+          <div class="summary-note"><strong>Carry-forward value</strong> — delivery, reply, and early-signal data become the base for the next iteration or expansion into another segment.</div>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="next">
-      <div class="section-grid">
-        <aside class="section-label">
-          <div class="label-kicker">08 · next step</div>
-          <h2 class="label-title">Simple decision path</h2>
-          <div class="label-copy">The last screen should make the next move feel obvious, not loaded.</div>
+    <section class="slide" id="slide-9" data-title="Next Step">
+      <div class="stage">
+        <aside class="chapter">
+          <div class="chapter-top">
+            <div class="chapter-index">09 · next step</div>
+            <h3 class="chapter-title">Simple decision path</h3>
+            <div class="chapter-copy">End as a decision slide, not a marketing CTA block.</div>
+          </div>
+          <div class="chapter-bottom">Roman should be able to repeat this upward in 30 seconds.</div>
         </aside>
-        <div class="stage">
+        <div class="canvas">
           <h2>If the format fits, the next step is simple.</h2>
-          <div class="asset-grid">
-            <div class="asset"><strong>Choose a format</strong><p>Select the level of execution ownership that matches the team’s current capacity.</p></div>
-            <div class="asset"><strong>Confirm ICP</strong><p>Lock the priority segments and the first operating angle.</p></div>
-            <div class="asset"><strong>Start setup</strong><p>Move directly into pilot preparation rather than internal stack building.</p></div>
-            <div class="asset"><strong>Review week-one contour</strong><p>Inspect the working outbound setup before the broader motion begins.</p></div>
+          <div class="decision-grid">
+            <div class="decision"><strong>1 · Choose a format</strong><p>Pick the execution level that matches current internal capacity.</p></div>
+            <div class="decision"><strong>2 · Confirm ICP</strong><p>Lock priority segments and the first operating angle.</p></div>
+            <div class="decision"><strong>3 · Start setup</strong><p>Move directly into pilot preparation rather than internal stack building.</p></div>
+            <div class="decision"><strong>4 · Review week-one contour</strong><p>Inspect the working outbound setup before the broader motion begins.</p></div>
           </div>
-          <div class="decision-bar">
-            <div class="decision-pill"><strong>Decision</strong><span>Pick the format that matches internal capacity.</span></div>
-            <div class="decision-pill"><strong>Owner</strong><span>Roman carries the recommendation upward with a clean narrative.</span></div>
-            <div class="decision-pill"><strong>Week one</strong><span>A visible outbound contour exists by the end of the first pass.</span></div>
-            <div class="decision-pill"><strong>Outcome</strong><span>A management-safe pilot instead of an internal build exercise.</span></div>
+          <div class="closing-row">
+            <div class="summary-note" style="margin:0; flex:1;"><strong>Closing line</strong> — a fast, management-safe way to test a new partnership channel without hiring a team or building infrastructure in-house.</div>
+            <a class="cta-pill" href="mailto:hello@empy.ai?subject=TRON%20Energy%20Pilot%20Review">Approve pilot format</a>
           </div>
-          <div class="hero-note" style="margin-top:24px; max-width:none;"><strong>Closing line</strong> — a fast, management-safe way to test a new partnership channel without hiring a team or building infrastructure in-house.</div>
-          <div class="cta-row">
-            <a class="cta primary" href="mailto:hello@empy.ai?subject=TRON%20Energy%20Pilot%20Approval">Approve pilot format</a>
-            <a class="cta secondary" href="mailto:hello@empy.ai?subject=TRON%20Energy%20Pilot%20Review%20Call">Book review call</a>
-          </div>
+          <div class="subdued">Keys: ↑ ↓ ← → · PageUp / PageDown · Home / End</div>
         </div>
       </div>
     </section>
-
-    <div class="shell footer">Built in an Empy-style product language for clean forwarding and internal review.</div>
   </main>
+
+  <script>
+    const deck = document.getElementById('deck');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const currentEl = document.getElementById('currentSlide');
+    const totalEl = document.getElementById('totalSlides');
+    const progressFill = document.getElementById('progressFill');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+    let wheelLock = false;
+
+    totalEl.textContent = String(slides.length);
+
+    function goToSlide(index, updateHash = true) {
+      const clamped = Math.max(0, Math.min(index, slides.length - 1));
+      currentIndex = clamped;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === clamped));
+      currentEl.textContent = String(clamped + 1);
+      const pct = ((clamped + 1) / slides.length) * 100;
+      progressFill.style.height = pct + '%';
+      prevBtn.disabled = clamped === 0;
+      nextBtn.disabled = clamped === slides.length - 1;
+      prevBtn.style.opacity = clamped === 0 ? '.45' : '1';
+      nextBtn.style.opacity = clamped === slides.length - 1 ? '.45' : '1';
+      if (updateHash) history.replaceState(null, '', '#' + slides[clamped].id);
+    }
+
+    function step(delta) {
+      goToSlide(currentIndex + delta);
+    }
+
+    prevBtn.addEventListener('click', () => step(-1));
+    nextBtn.addEventListener('click', () => step(1));
+
+    deck.addEventListener('wheel', (e) => {
+      if (window.innerWidth <= 980) return;
+      e.preventDefault();
+      if (wheelLock) return;
+      if (Math.abs(e.deltaY) < 20) return;
+      wheelLock = true;
+      step(e.deltaY > 0 ? 1 : -1);
+      setTimeout(() => { wheelLock = false; }, 320);
+    }, { passive: false });
+
+    window.addEventListener('keydown', (e) => {
+      if (['ArrowDown', 'ArrowRight', 'PageDown', ' '].includes(e.key)) {
+        e.preventDefault();
+        step(1);
+      }
+      if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        step(-1);
+      }
+      if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(0);
+      }
+      if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(slides.length - 1);
+      }
+    });
+
+    const hash = window.location.hash;
+    const startIndex = hash ? slides.findIndex(slide => '#' + slide.id === hash) : 0;
+    goToSlide(startIndex >= 0 ? startIndex : 0, false);
+  </script>
 </body>
 </html>
