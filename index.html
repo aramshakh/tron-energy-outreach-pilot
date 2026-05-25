@@ -14,8 +14,8 @@
       --line: rgba(255,255,255,0.09);
       --soft: rgba(255,255,255,0.05);
       --text: #f6f8ff;
-      --muted: #b4bfdc;
-      --muted-2: #7f8db1;
+      --muted: #c0cae4;
+      --muted-2: #94a1c2;
       --accent: #9b8cff;
       --accent-2: #7fd7ff;
       --accent-3: #8ef0cc;
@@ -375,6 +375,57 @@
       letter-spacing: .02em;
     }
 
+    .decision-strip {
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border-radius: 20px;
+      padding: 14px 16px;
+      display: grid;
+      gap: 6px;
+      align-content: end;
+    }
+
+    .decision-strip strong {
+      display: block;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent-3);
+    }
+
+    .decision-strip span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.36;
+      color: var(--text);
+    }
+
+    .ownership-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .ownership {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 12px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .ownership strong {
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .ownership span {
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.28;
+    }
+
     .footer-note {
       margin-top: 14px;
       color: var(--muted-2);
@@ -388,18 +439,19 @@
     .slide-2 .takeaway { margin-top: 14px; }
 
     .slide-6 .body { gap: 10px; }
-    .slide-6 h2 { max-width: 12ch; font-size: clamp(28px, 3vw, 42px); line-height: .96; }
-    .slide-6 .subhead { margin-top: 8px; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.28; max-width: 48ch; }
-    .slide-6 .tier-card p { font-size: 12px; line-height: 1.28; }
-    .slide-6 .tier-card ul { font-size: 12px; gap: 4px; }
-    .slide-6 .card-title { font-size: 13px; margin-bottom: 4px; }
-    .slide-6 .recommend { margin-top: 6px; font-size: 11px; padding: 8px 12px; }
-
-    .slide-6 .topline { margin-bottom: 12px; }
+    .slide-6 .pricing-head { display: block; }
+    .slide-6 h2 { max-width: 15ch; font-size: clamp(28px, 2.7vw, 38px); line-height: .95; }
+    .slide-6 .subhead { margin-top: 7px; font-size: clamp(12px, 1vw, 15px); line-height: 1.24; max-width: 52ch; }
+    .slide-6 .tier-card p { font-size: 11px; line-height: 1.24; }
+    .slide-6 .tier-card ul { font-size: 11px; gap: 3px; }
+    .slide-6 .card-title { font-size: 12px; margin-bottom: 1px; }
+    .slide-6 .topline { margin-bottom: 10px; }
     .slide-6 .tier-grid { gap: 10px; }
-    .slide-6 .tier-card { padding: 12px 12px 10px; gap: 8px; }
-    .slide-6 .price { font-size: clamp(28px, 2.8vw, 42px); }
-    .slide-6 .badge { padding: 5px 8px; font-size: 10px; }
+    .slide-6 .tier-card { padding: 13px 13px 11px; gap: 8px; }
+    .slide-6 .tier-card.featured { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(123,107,255,.14); }
+    .slide-6 .price { font-size: clamp(27px, 2.55vw, 38px); }
+    .slide-6 .badge { padding: 4px 8px; font-size: 9px; }
+    .slide-6 .recommend { margin-top: 8px; padding: 7px 11px; font-size: 10px; }
 
     .bottom-bar {
       display: none !important;
@@ -457,6 +509,8 @@
       .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .micro-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .tier-grid { grid-template-columns: 1fr; }
+      .ownership-row { grid-template-columns: 1fr; }
+      .slide-6 .pricing-head { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 860px) {
@@ -573,32 +627,52 @@
       <div class="canvas">
         <div class="topline"><div class="eyebrow">Three launch formats</div><div class="counter">06 / 09</div></div>
         <div class="body">
-          <div>
-            <h2>Choose by execution support, not feature count.</h2>
-            <p class="subhead">The key variable is how much execution support your team needs.</p>
+          <div class="pricing-head">
+            <div>
+              <h2>Choose by execution support, not feature count.</h2>
+              <p class="subhead">Same market underneath. The difference is who runs the outbound motion after targeting is prepared.</p>
+              <div class="recommend">Recommended for first launch: Managed Outreach</div>
+            </div>
           </div>
           <div class="tier-grid">
             <article class="tier-card">
               <div class="tier">Self-Serve</div>
               <div class="price">$5,000</div>
-              <div class="card-title">Best for teams with internal outbound capacity</div>
-              <p>Database access plus advisory support. Internal team runs the campaign.</p>
+              <div class="card-title">Best if your team already has outbound capacity</div>
+              <p>We package the market and hand over a usable operating surface.</p>
+              <ul>
+                <li>15k+ selected market</li>
+                <li>UI workspace + filters</li>
+                <li>email flow on your side</li>
+              </ul>
+              <div class="ownership"><strong>You own</strong><span>sending, iteration, and reply handling</span></div>
             </article>
             <article class="tier-card featured">
               <div class="badge">Recommended</div>
               <div class="tier">Managed Outreach</div>
               <div class="price">$7,500</div>
-              <div class="card-title">Best for a first turnkey launch</div>
-              <p>The practical default when speed matters and no outbound function exists yet.</p>
+              <div class="card-title">Best first launch when speed matters</div>
+              <p>The practical default when there is no internal outbound machine yet.</p>
+              <ul>
+                <li>everything in Self-Serve</li>
+                <li>warmed inboxes</li>
+                <li>we send + track</li>
+              </ul>
+              <div class="ownership"><strong>We own</strong><span>launch, delivery tracking, and signal routing</span></div>
             </article>
             <article class="tier-card">
               <div class="tier">Managed + Enrichment</div>
               <div class="price">$11,500</div>
-              <div class="card-title">Best for a stronger first touch</div>
-              <p>Deeper context and personalization for a more competitive audience.</p>
+              <div class="card-title">Best when reply quality matters most</div>
+              <p>Extra public-context research to make each first touch feel more informed.</p>
+              <ul>
+                <li>everything in Managed</li>
+                <li>Twitter / site enrichment</li>
+                <li>stronger first lines</li>
+              </ul>
+              <div class="ownership"><strong>Use when</strong><span>the audience is narrower, colder, or more competitive</span></div>
             </article>
           </div>
-          <div class="recommend">Recommended for first launch: Managed Outreach</div>
         </div>
       </div>
     </section>
